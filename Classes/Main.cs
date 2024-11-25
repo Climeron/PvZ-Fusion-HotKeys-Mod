@@ -1,29 +1,24 @@
-﻿using HotKeysMod.HotKeysCheckers;
+﻿using ClimeronToolsForPvZ.Extensions;
+using HotKeysMod.Classes;
+using HotKeysMod.HotKeysCheckers;
+using Il2Cpp;
 using MelonLoader;
+using UnityEngine;
 
 namespace HotKeysMod
 {
     public class Main : MelonMod
     {
-        private static bool _hotKeyIsAvailable = true;
-        public static bool HotKeyIsAvailable
-        {
-            get => _hotKeyIsAvailable;
-            internal set => _hotKeyIsAvailable = value;
-        }
+        public static Main Instance { get; private set; }
 
+        public override void OnInitializeMelon()
+        {
+            base.OnInitializeMelon();
+            Instance = this;
+        }
         public override void OnUpdate()
         {
-            CastCheckers();
-        }
-        private void CastCheckers()
-        {
-            MelonCoroutines.Start(ToolsHotKeysChecker.CheckForItem(ToolsHotKeysChecker.Tools.Shovel));
-            MelonCoroutines.Start(ToolsHotKeysChecker.CheckForItem(ToolsHotKeysChecker.Tools.Glove));
-            MelonCoroutines.Start(ToolsHotKeysChecker.CheckForItem(ToolsHotKeysChecker.Tools.Hammer));
-            MelonCoroutines.Start(PlantsHotkeysChecker.CheckForHotKeys());
-            MelonCoroutines.Start(ZombiesHotkeysChecker.CheckForHotKeys());
-            SlowTriggerChecker.CheckForHotKeys();
+            HotKeysManager.CheckHotKeys();
         }
     }
 }

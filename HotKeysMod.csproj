@@ -32,19 +32,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="HotKeysCheckers\HotKeys.cs" />
-    <Compile Include="HotKeysCheckers\ZombiesHotkeysChecker.cs" />
+    <Compile Include="Classes\HotKeysManager.cs" />
+    <Compile Include="Classes\MouseIntegration.cs" />
+    <Compile Include="Classes\ToolTypesEnum.cs" />
+    <Compile Include="Patches\ItemBtnPatches.cs" />
     <Compile Include="Patches\UIMgrPatches.cs" />
     <Compile Include="TooltipsDrawers\HotKeysTooltipsDrawerForPlantsMode.cs" />
-    <Compile Include="Patches\HammerMgrPatch.cs" />
-    <Compile Include="Patches\GloveMgrPatch.cs" />
-    <Compile Include="Patches\InGameBtnPatch.cs" />
-    <Compile Include="Patches\AnimUIOverPatch.cs" />
-    <Compile Include="Patches\ShovelMgrPatch.cs" />
-    <Compile Include="HotKeysCheckers\SlowTriggerChecker.cs" />
-    <Compile Include="HotKeysCheckers\ToolsHotKeysChecker.cs" />
+    <Compile Include="Patches\HammerMgrPatches.cs" />
+    <Compile Include="Patches\GloveMgrPatches.cs" />
+    <Compile Include="Patches\InGameBtnPatches.cs" />
+    <Compile Include="Patches\AnimUIOverPatches.cs" />
+    <Compile Include="Patches\ShovelMgrPatches.cs" />
+    <Compile Include="Classes\SlowTrigger.cs" />
     <Compile Include="Classes\Main.cs" />
-    <Compile Include="HotKeysCheckers\PlantsHotkeysChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TooltipsDrawers\HotKeysTooltipsDrawerForZombieMode.cs" />
     <Compile Include="TooltipsDrawers\HotKeyTooltipDrawer.cs" />

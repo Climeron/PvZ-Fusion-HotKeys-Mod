@@ -30,13 +30,13 @@ namespace HotKeysMod.TooltipsDrawers
                 if (child.parent != seedGroupTransform)
                     continue;
                 cardNumber++;
-                if (cardNumber == HotKeysCheckers.HotKeys.Cards.Count)
+                if (cardNumber == HotKeysCheckers.HotKeysManager.Cards.Count)
                     return;
                 $"Card number {cardNumber}: '{child.name}' found".Print();
                 Transform packet = child.GetChild(0);
                 if (!packet)
                     continue;
-                HotKeyTooltipDrawer.CreateTooltip(packet.GetComponent<RectTransform>(), (char)HotKeysCheckers.HotKeys.Cards[cardNumber].keyCode, HotKeyTooltipDrawer.ObjectType.Card);
+                HotKeyTooltipDrawer.CreateTooltip(packet.GetComponent<RectTransform>(), (char)HotKeysCheckers.HotKeysManager.Cards[cardNumber].keyCode, HotKeyTooltipDrawer.ObjectType.Card);
             }
         }
         private static void CreateTooltipForShovelBank()
@@ -45,7 +45,7 @@ namespace HotKeysMod.TooltipsDrawers
             (shovelBankObject ? $"{shovelBankObject.name} found" : "ShovelBank not found").Print();
             Transform shovelBankTransform = shovelBankObject.transform;
             $"at '{shovelBankTransform.GetPath()}'".Print();
-            HotKeyTooltipDrawer.CreateTooltip(shovelBankTransform.GetComponent<RectTransform>(), (char)HotKeysCheckers.HotKeys.shovel, HotKeyTooltipDrawer.ObjectType.Tool);
+            HotKeyTooltipDrawer.CreateTooltip(shovelBankTransform.GetComponent<RectTransform>(), (char)HotKeysCheckers.HotKeysManager.shovel, HotKeyTooltipDrawer.ObjectType.Tool);
         }
         private static void DisableInGameTooltips()
         {

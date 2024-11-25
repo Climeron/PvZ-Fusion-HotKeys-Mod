@@ -36,7 +36,7 @@ namespace HotKeysMod.TooltipsDrawers
         }
         private static void CreateTooltipsForCards()
         {
-            List<(KeyCode keyCode, int index)> cardsHotkeys = HotKeys.Cards;
+            List<(KeyCode keyCode, int index)> cardsHotkeys = HotKeysManager.Cards;
             for (int i = 0; i < 14; i++)
             {
                 (KeyCode keyCode, int index) tuple = cardsHotkeys.FirstOrDefault(tuple => tuple.index == i);
@@ -51,9 +51,9 @@ namespace HotKeysMod.TooltipsDrawers
         }
         private static void CreateTooltipsForTools()
         {
-            CreateTooltipForTool(InGameUIMgr.Instance.ShovelBank, (char)HotKeys.shovel);
-            CreateTooltipForTool(InGameUIMgr.Instance.GloveBank, (char)HotKeys.glove);
-            CreateTooltipForTool(InGameUIMgr.Instance.HammerBank, (char)HotKeys.hammer);
+            CreateTooltipForTool(InGameUIMgr.Instance.ShovelBank, (char)HotKeysManager.shovel);
+            CreateTooltipForTool(InGameUIMgr.Instance.GloveBank, (char)HotKeysManager.glove);
+            CreateTooltipForTool(InGameUIMgr.Instance.HammerBank, (char)HotKeysManager.hammer);
         }
         private static void CreateTooltipForTool(GameObject bank, char hotkey)
         {
@@ -65,7 +65,7 @@ namespace HotKeysMod.TooltipsDrawers
         private static void CreateTooltipForSlowTrigger()
         {
             GameObject slowTriggerObject = InGameUIMgr.Instance.SlowTrigger;
-            HotKeyTooltipDrawer.CreateTooltip(slowTriggerObject.GetComponent<RectTransform>(), (char)HotKeys.slowTrigger, ObjectType.Button);
+            HotKeyTooltipDrawer.CreateTooltip(slowTriggerObject.GetComponent<RectTransform>(), (char)HotKeysManager.slowTrigger, ObjectType.Button);
         }
         private static void DisableInGameTooltips()
         {
