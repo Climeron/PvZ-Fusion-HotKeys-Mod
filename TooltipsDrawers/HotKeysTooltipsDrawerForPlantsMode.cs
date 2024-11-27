@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ClimeronToolsForPvZ.Classes.UI;
+using ClimeronToolsForPvZ.Components;
 using ClimeronToolsForPvZ.Extensions;
+using HotKeysMod.Components;
 using HotKeysMod.HotKeysCheckers;
 using Il2Cpp;
 using Il2CppInterop.Runtime;
+using Il2CppTMPro;
 using UnityEngine;
 
 namespace HotKeysMod.TooltipsDrawers
@@ -14,10 +18,11 @@ namespace HotKeysMod.TooltipsDrawers
         public static void CreateTooltips()
         {
             PrintPaths();
+            DisableInGameTooltips();
             CreateTooltipsForCards();
             CreateTooltipsForTools();
             CreateTooltipForSlowTrigger();
-            DisableInGameTooltips();
+            CreateTextsForGoldenBean();
         }
         private static void PrintPaths()
         {
@@ -65,7 +70,29 @@ namespace HotKeysMod.TooltipsDrawers
         private static void CreateTooltipForSlowTrigger()
         {
             GameObject slowTriggerObject = InGameUIMgr.Instance.SlowTrigger;
-            HotKeyTooltipDrawer.CreateTooltip(slowTriggerObject.GetComponent<RectTransform>(), (char)HotKeysManager.slowTrigger, ObjectType.Button);
+            ShadowedTextSupporter tooltip = HotKeyTooltipDrawer.CreateTooltip(slowTriggerObject.GetComponent<RectTransform>(), "Tab", ObjectType.Button);
+            tooltip.Alignment = TextAlignmentOptions.Left;
+        }
+        private static void CreateTextsForGoldenBean()
+        {
+            Transform beanObject = Money.Instance.transform.Find("BeanBank");
+            ShadowedTextSupporter tooltip = HotKeyTooltipDrawer.CreateTooltip(beanObject.GetComponent<RectTransform>(), (char)HotKeysManager.goldenBean, ObjectType.GoldenBean);
+            tooltip.Alignment = TextAlignmentOptions.Left;
+            tooltip.Size = 70;
+            ShadowedTextSupporter beansAmount = ShadowedTextCreator.CreateText("BeansAmount", beanObject);
+            beansAmount.Alignment = TextAlignmentOptions.Right;
+            beansAmount.Color = new(0.9f, 0.9f, 0, 1);
+            beansAmount.FontStyle = FontStyles.Bold;
+            beansAmount.OutlineWidth = 0.3f;
+            beansAmount.ShadowOffsetX = 0.03f;
+            beansAmount.ShadowOffsetY = 0.02f;
+            beansAmount.Size = 30;
+            beansAmount.WordWrapping = false;
+            RectTransform beanAmountRectTransform = beansAmount.GetComponent<RectTransform>();
+            beanAmountRectTransform.localScale = Vector3.one;
+            beanAmountRectTransform.localPosition = new(33, -22.5f, 0);
+            BeansAmountDrawer beansAmountDrawer = beansAmount.gameObject.AddComponent<BeansAmountDrawer>();
+            beansAmountDrawer.beansAmountTextSupporter = beansAmount;
         }
         private static void DisableInGameTooltips()
         {
@@ -75,6 +102,7 @@ namespace HotKeysMod.TooltipsDrawers
             InGameUIMgr.Instance.GloveBank.transform.Find("shadow")?.gameObject.SetActive(false);
             InGameUIMgr.Instance.HammerBank.transform.Find("text")?.gameObject.SetActive(false);
             InGameUIMgr.Instance.HammerBank.transform.Find("shadow")?.gameObject.SetActive(false);
+            Money.Instance.beanCount2.gameObject.SetActive(false);
             GameObject slowTriggerObject = InGameUIMgr.Instance.SlowTrigger;
             foreach (Transform child in slowTriggerObject.GetComponentsInChildren<Transform>(true))
                 if (child.parent == slowTriggerObject.transform && child.localPosition.y < -20)

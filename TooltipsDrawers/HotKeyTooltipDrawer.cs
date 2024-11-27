@@ -7,16 +7,19 @@ namespace HotKeysMod
 {
     public static class HotKeyTooltipDrawer
     {
-        public enum ObjectType { Card, Tool, Button }
+        public enum ObjectType { Card, Tool, Button, GoldenBean }
         private static Vector3 _cardTooltipOffset = new(45, -50, 0);
         private static Vector3 _toolTooltipOffset = new(36, -21, 0);
-        private static Vector3 _buttonTooltipOffset = new(93.5f, 0, 0);
-        public static void CreateTooltip(RectTransform parentRectTransform, char hotKeyChar, ObjectType objectType)
+        private static Vector3 _buttonTooltipOffset = new(59, 0, 0);
+        private static Vector3 _goldenBeanTooltipOffset = new(40f, 5.5f, 0);
+        public static ShadowedTextSupporter CreateTooltip(RectTransform parentRectTransform, char hotKeyChar, ObjectType objectType) =>
+            CreateTooltip(parentRectTransform, hotKeyChar.ToString(), objectType);
+        public static ShadowedTextSupporter CreateTooltip(RectTransform parentRectTransform, string hotKeyText, ObjectType objectType)
         {
             if (!parentRectTransform)
-                return;
+                return null;
             ShadowedTextSupporter textSupporter = ShadowedTextCreator.CreateText("HotKeyTooltip", parentRectTransform);
-            textSupporter.Text = $"[<b>{hotKeyChar}</b>]";
+            textSupporter.Text = $"[<b>{hotKeyText}</b>]";
             textSupporter.Color = Color.green;
             textSupporter.OutlineWidth = 0.3f;
             textSupporter.Size = 26;
@@ -34,8 +37,10 @@ namespace HotKeysMod
                 ObjectType.Card => _cardTooltipOffset,
                 ObjectType.Tool => _toolTooltipOffset,
                 ObjectType.Button => _buttonTooltipOffset,
+                ObjectType.GoldenBean => _goldenBeanTooltipOffset,
                 _ => new()
             };
+            return textSupporter;
         }
     }
 }

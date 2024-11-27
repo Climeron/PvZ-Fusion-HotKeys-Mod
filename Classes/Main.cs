@@ -1,9 +1,7 @@
-﻿using ClimeronToolsForPvZ.Extensions;
-using HotKeysMod.Classes;
+﻿using HotKeysMod.Components;
 using HotKeysMod.HotKeysCheckers;
-using Il2Cpp;
+using Il2CppInterop.Runtime.Injection;
 using MelonLoader;
-using UnityEngine;
 
 namespace HotKeysMod
 {
@@ -13,12 +11,17 @@ namespace HotKeysMod
 
         public override void OnInitializeMelon()
         {
+            RegisterComponents();
             base.OnInitializeMelon();
             Instance = this;
         }
         public override void OnUpdate()
         {
             HotKeysManager.CheckHotKeys();
+        }
+        private void RegisterComponents()
+        {
+            ClassInjector.RegisterTypeInIl2Cpp<BeansAmountDrawer>();
         }
     }
 }

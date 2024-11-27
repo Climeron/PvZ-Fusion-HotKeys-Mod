@@ -35,6 +35,7 @@
     <Compile Include="Classes\HotKeysManager.cs" />
     <Compile Include="Classes\MouseIntegration.cs" />
     <Compile Include="Classes\ToolTypesEnum.cs" />
+    <Compile Include="Components\BeansAmountDrawer.cs" />
     <Compile Include="Patches\ItemBtnPatches.cs" />
     <Compile Include="Patches\UIMgrPatches.cs" />
     <Compile Include="TooltipsDrawers\HotKeysTooltipsDrawerForPlantsMode.cs" />

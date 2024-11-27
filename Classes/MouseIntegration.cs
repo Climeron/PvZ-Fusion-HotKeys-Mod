@@ -89,7 +89,7 @@ namespace HotKeysMod.Classes
                     mouse.theItemOnMouse = hammer.gameObject;
                     return hammer;
                 case ItemBtn bean:
-                    if (!bean.gameObject.activeInHierarchy)
+                    if (!bean.gameObject.activeInHierarchy || Money.Instance?.board.theMoney <= 1000)
                         return null;
                     mouse.theItemOnMouse = bean.Clicked();
                     return bean;
