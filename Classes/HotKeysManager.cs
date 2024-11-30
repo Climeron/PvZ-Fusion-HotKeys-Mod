@@ -7,25 +7,25 @@ namespace HotKeysMod.HotKeysCheckers
 {
     public static class HotKeysManager
     {
-        public static readonly (KeyCode keyCode, int index) card0 = (KeyCode.Alpha1, 0);
-        public static readonly (KeyCode keyCode, int index) card1 = (KeyCode.Alpha2, 1);
-        public static readonly (KeyCode keyCode, int index) card2 = (KeyCode.Alpha3, 2);
-        public static readonly (KeyCode keyCode, int index) card3 = (KeyCode.Alpha4, 3);
-        public static readonly (KeyCode keyCode, int index) card4 = (KeyCode.Alpha5, 4);
-        public static readonly (KeyCode keyCode, int index) card5 = (KeyCode.Alpha6, 5);
-        public static readonly (KeyCode keyCode, int index) card6 = (KeyCode.Alpha7, 6);
-        public static readonly (KeyCode keyCode, int index) card7 = (KeyCode.Alpha8, 7);
-        public static readonly (KeyCode keyCode, int index) card8 = (KeyCode.Alpha9, 8);
-        public static readonly (KeyCode keyCode, int index) card9 = (KeyCode.Alpha0, 9);
-        public static readonly (KeyCode keyCode, int index) card10 = (KeyCode.Minus, 10);
-        public static readonly (KeyCode keyCode, int index) card11 = (KeyCode.Equals, 11);
-        public static readonly (KeyCode keyCode, int index) card12 = (KeyCode.LeftBracket, 12);
-        public static readonly (KeyCode keyCode, int index) card13 = (KeyCode.RightBracket, 13);
-        public static readonly KeyCode shovel = KeyCode.Q;
-        public static readonly KeyCode glove = KeyCode.W;
-        public static readonly KeyCode hammer = KeyCode.E;
-        public static readonly KeyCode goldenBean = KeyCode.R;
-        public static readonly KeyCode slowTrigger = KeyCode.Tab;
+        public static readonly (KeyCode keyCode, int index) card0 = (Main.key0.Value, 0);
+        public static readonly (KeyCode keyCode, int index) card1 = (Main.key1.Value, 1);
+        public static readonly (KeyCode keyCode, int index) card2 = (Main.key2.Value, 2);
+        public static readonly (KeyCode keyCode, int index) card3 = (Main.key3.Value, 3);
+        public static readonly (KeyCode keyCode, int index) card4 = (Main.key4.Value, 4);
+        public static readonly (KeyCode keyCode, int index) card5 = (Main.key5.Value, 5);
+        public static readonly (KeyCode keyCode, int index) card6 = (Main.key6.Value, 6);
+        public static readonly (KeyCode keyCode, int index) card7 = (Main.key7.Value, 7);
+        public static readonly (KeyCode keyCode, int index) card8 = (Main.key8.Value, 8);
+        public static readonly (KeyCode keyCode, int index) card9 = (Main.key9.Value, 9);
+        public static readonly (KeyCode keyCode, int index) card10 = (Main.key10.Value, 10);
+        public static readonly (KeyCode keyCode, int index) card11 = (Main.key11.Value, 11);
+        public static readonly (KeyCode keyCode, int index) card12 = (Main.key12.Value, 12);
+        public static readonly (KeyCode keyCode, int index) card13 = (Main.key13.Value, 13);
+        public static readonly KeyCode shovel = Main.keyShovel.Value;
+        public static readonly KeyCode glove = Main.keyGlove.Value;
+        public static readonly KeyCode hammer = Main.keyHammer.Value;
+        public static readonly KeyCode goldenBean = Main.keyGoldenBean.Value;
+        public static readonly KeyCode slowTrigger = Main.keySlowTrigger.Value;
         public static Dictionary<ToolTypesEnum, KeyCode> ToolTypes
         {
             get
