@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(HotKeysMod.Main), HotKeysMod.AssemblyInfo.MODE_NAME, HotKeysMod.AssemblyInfo.VERSION, HotKeysMod.AssemblyInfo.AUTHOR)]
+[assembly: MelonInfo(typeof(HotKeysMod.Classes.Main), HotKeysMod.AssemblyInfo.MODE_NAME, HotKeysMod.AssemblyInfo.VERSION, HotKeysMod.AssemblyInfo.AUTHOR)]
 [assembly: MelonGame("LanPiaoPiao", "PlantsVsZombiesRH")]
 [assembly: MelonAdditionalDependencies("ClimeronToolsForPvZ")]
 
@@ -44,7 +44,7 @@ namespace HotKeysMod
     public static class AssemblyInfo
     {
         public const string MODE_NAME = nameof(HotKeysMod);
-        public const string VERSION = "214.0.0";
+        public const string VERSION = "215.0.0";
         public const string AUTHOR = "Climeron";
     }
 }

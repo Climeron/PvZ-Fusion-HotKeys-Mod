@@ -2,7 +2,7 @@
 using Il2Cpp;
 using UnityEngine;
 
-namespace HotKeysMod.HotKeysCheckers
+namespace HotKeysMod.Classes
 {
     public static class SlowTrigger
     {

@@ -10,34 +10,33 @@ namespace HotKeysMod.Classes
             Mouse mouse = Mouse.Instance;
             if (!mouse || GameAPP.theGameStatus != (int)GameStatus.InGame)
                 return null;
-            ClearPlantShadow();
+            DestroyPlantPreview();
             mouse.PutDownItem();
             object card = GetCard(index);
             if (card == null)
                 return null;
             switch (card)
             {
-                case CardUI cardUI:
-                    if (!cardUI.gameObject.activeInHierarchy || !cardUI.isAvailable)
-                        return null;
-                    mouse.ClickOnCard(cardUI);
-                    return cardUI;
                 case IZECard izeCard:
                     if (!izeCard.gameObject.activeInHierarchy)
                         return null;
                     mouse.ClickOnIZECard(izeCard);
                     return izeCard;
+                case CardUI cardUI:
+                    if (!cardUI.gameObject.activeInHierarchy || !cardUI.isAvailable)
+                        return null;
+                    mouse.ClickOnCard(cardUI);
+                    return cardUI;
             }
             return card;
         }
-        public static void ClearPlantShadow()
+        public static void DestroyPlantPreview()
         {
             Mouse mouse = Mouse.Instance;
-            if (mouse.plantShadow)
+            if (mouse.preview)
             {
-                Object.Destroy(mouse.plantShadow);
-                mouse.plantShadow = null;
-                mouse.existShadow = false;
+                Object.Destroy(mouse.preview);
+                mouse.preview = null;
             }
         }
         public static object GetCard(int index)
@@ -49,10 +48,10 @@ namespace HotKeysMod.Classes
             if (cardContainer.childCount == 0)
                 return null;
             Transform card = cardContainer.GetChild(0);
-            if (card.TryGetComponent(out CardUI cardUI))
-                return cardUI;
-            else if (card.TryGetComponent(out IZECard izeCard))
+            if (card.TryGetComponent(out IZECard izeCard))
                 return izeCard;
+            else if (card.TryGetComponent(out CardUI cardUI))
+                return cardUI;
             return null;
         }
         public static Transform GetSeedGroup() =>

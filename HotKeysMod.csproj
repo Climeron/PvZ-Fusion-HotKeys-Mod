@@ -36,7 +36,10 @@
     <Compile Include="Classes\MouseIntegration.cs" />
     <Compile Include="Classes\ToolTypesEnum.cs" />
     <Compile Include="Components\BeansAmountDrawer.cs" />
+    <Compile Include="Patches\EveBtnPatches.cs" />
     <Compile Include="Patches\ItemBtnPatches.cs" />
+    <Compile Include="Patches\MoneyPatches.cs" />
+    <Compile Include="Patches\BoardPatches.cs" />
     <Compile Include="Patches\UIMgrPatches.cs" />
     <Compile Include="TooltipsDrawers\HotKeysTooltipsDrawerForPlantsMode.cs" />
     <Compile Include="Patches\HammerMgrPatches.cs" />

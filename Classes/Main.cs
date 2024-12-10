@@ -1,9 +1,8 @@
 ﻿using HotKeysMod.Components;
-using HotKeysMod.HotKeysCheckers;
 using Il2CppInterop.Runtime.Injection;
 using MelonLoader;
 
-namespace HotKeysMod
+namespace HotKeysMod.Classes
 {
     public class Main : MelonMod
     {

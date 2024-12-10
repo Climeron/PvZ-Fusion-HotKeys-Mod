@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using ClimeronToolsForPvZ.Extensions;
-using HotKeysMod.Classes;
+using Il2Cpp;
 using UnityEngine;
 
-namespace HotKeysMod.HotKeysCheckers
+namespace HotKeysMod.Classes
 {
     public static class HotKeysManager
     {
@@ -26,6 +26,8 @@ namespace HotKeysMod.HotKeysCheckers
         public static readonly KeyCode hammer = KeyCode.E;
         public static readonly KeyCode goldenBean = KeyCode.R;
         public static readonly KeyCode slowTrigger = KeyCode.Tab;
+        public static readonly KeyCode plantHPShowing = KeyCode.F1;
+        public static readonly KeyCode zombieHPShowing = KeyCode.F2;
         public static Dictionary<ToolTypesEnum, KeyCode> ToolTypes
         {
             get
@@ -66,6 +68,8 @@ namespace HotKeysMod.HotKeysCheckers
             CheckToolsHotKeys();
             CheckCardsHotKeys();
             CheckSlowTriggerHotKey();
+            CheckPlantHPShowingHotKey();
+            CheckZombieHPShowingHotKey();
         }
         private static void CheckToolsHotKeys() =>
             ToolTypes.FindAll(pair => Input.GetKeyDown(pair.Value))
@@ -77,6 +81,16 @@ namespace HotKeysMod.HotKeysCheckers
         {
             if (Input.GetKeyDown(slowTrigger))
                 SlowTrigger.Cast();
+        }
+        private static void CheckPlantHPShowingHotKey()
+        {
+            if (Board.Instance && Input.GetKeyDown(plantHPShowing))
+                Board.Instance.ShowPlantHealth();
+        }
+        private static void CheckZombieHPShowingHotKey()
+        {
+            if (Board.Instance && Input.GetKeyDown(zombieHPShowing))
+                Board.Instance.ShowZombieHealth();
         }
     }
 }

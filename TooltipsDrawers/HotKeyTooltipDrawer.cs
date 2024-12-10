@@ -1,5 +1,8 @@
 ﻿using ClimeronToolsForPvZ.Classes.UI;
 using ClimeronToolsForPvZ.Components;
+using ClimeronToolsForPvZ.Extensions;
+using HotKeysMod.Classes;
+using Il2Cpp;
 using Il2CppTMPro;
 using UnityEngine;
 
@@ -41,6 +44,31 @@ namespace HotKeysMod
                 _ => new()
             };
             return textSupporter;
+        }
+        public static void CreateCardsTooltips(Transform seedGroupTransform)
+        {
+            (seedGroupTransform ? $"{seedGroupTransform.name} found" : "SeedGroup not found").Print();
+            $"at '{seedGroupTransform.transform.GetPath()}'".Print();
+            int cardNumber = -1;
+            foreach (Transform child in seedGroupTransform.GetComponentsInChildren<Transform>())
+            {
+                if (child.parent != seedGroupTransform)
+                    continue;
+                cardNumber++;
+                if (cardNumber == HotKeysManager.Cards.Count)
+                    return;
+                $"Card number {cardNumber}: '{child.name}' found".Print();
+                if (child.childCount == 0)
+                    continue;
+                CreateTooltip(child.GetChild(0).GetComponent<RectTransform>(), (char)HotKeysManager.Cards[cardNumber].keyCode, HotKeyTooltipDrawer.ObjectType.Card);
+            }
+        }
+        public static void DeleteCardsTooltips(Transform seedGroupTransform)
+        {
+            (seedGroupTransform ? $"{seedGroupTransform.name} found" : "SeedGroup not found").Print();
+            $"at '{seedGroupTransform.GetPath()}'".Print();
+            foreach (ShadowedTextSupporter supporter in seedGroupTransform.GetComponentsInChildren<ShadowedTextSupporter>())
+                Object.Destroy(supporter.gameObject);
         }
     }
 }
