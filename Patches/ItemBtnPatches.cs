@@ -10,7 +10,7 @@ namespace HotKeysMod.Patches
         [HarmonyPrefix]
         private static bool PreUpdate(ItemBtn __instance)
         {
-            return false;
+            return false; //Disabling golden bean hotkey
         }
     }
 }

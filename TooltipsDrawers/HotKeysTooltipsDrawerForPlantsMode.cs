@@ -36,9 +36,9 @@ namespace HotKeysMod.TooltipsDrawers
         }
         private static void CreateTooltipsForTools()
         {
-            CreateTooltipForTool(InGameUIMgr.Instance.ShovelBank, (char)HotKeysManager.shovel);
-            CreateTooltipForTool(InGameUIMgr.Instance.GloveBank, (char)HotKeysManager.glove);
-            CreateTooltipForTool(InGameUIMgr.Instance.HammerBank, (char)HotKeysManager.hammer);
+            CreateTooltipForTool(InGameUIMgr.Instance.ShovelBank, (char)HotKeysManager.toolTypesDict[ToolTypesEnum.Shovel]);
+            CreateTooltipForTool(InGameUIMgr.Instance.GloveBank, (char)HotKeysManager.toolTypesDict[ToolTypesEnum.Glove]);
+            CreateTooltipForTool(InGameUIMgr.Instance.HammerBank, (char)HotKeysManager.toolTypesDict[ToolTypesEnum.Hammer]);
         }
         private static void CreateTooltipForTool(GameObject bank, char hotkey)
         {

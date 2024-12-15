@@ -2,7 +2,7 @@
 using ClimeronToolsForPvZ.Components;
 using ClimeronToolsForPvZ.Extensions;
 using HotKeysMod.Classes;
-using Il2Cpp;
+using System.Collections.Generic;
 using Il2CppTMPro;
 using UnityEngine;
 
@@ -10,11 +10,17 @@ namespace HotKeysMod
 {
     public static class HotKeyTooltipDrawer
     {
-        public enum ObjectType { Card, Tool, Button, GoldenBean }
-        private static Vector3 _cardTooltipOffset = new(45, -50, 0);
-        private static Vector3 _toolTooltipOffset = new(36, -21, 0);
-        private static Vector3 _buttonTooltipOffset = new(59, 0, 0);
-        private static Vector3 _goldenBeanTooltipOffset = new(40f, 5.5f, 0);
+        public enum ObjectType { None, Card, Tool, GardenTool, GardenPageButton, Button, GoldenBean }
+        private static readonly Dictionary<ObjectType, Vector3> _tooltipPositionsDict = new()
+        {
+            { ObjectType.None, new(0, 0, 0) },
+            { ObjectType.Card, new(45, -50, 0) },
+            { ObjectType.Tool, new(36, -21, 0) },
+            { ObjectType.GardenTool, new(63, 17, 0) },
+            { ObjectType.GardenPageButton, new(-8, 3, 0) },
+            { ObjectType.Button, new(59, 0, 0) },
+            { ObjectType.GoldenBean, new(40, 5.5f, 0) }
+        };
         public static ShadowedTextSupporter CreateTooltip(RectTransform parentRectTransform, char hotKeyChar, ObjectType objectType) =>
             CreateTooltip(parentRectTransform, hotKeyChar.ToString(), objectType);
         public static ShadowedTextSupporter CreateTooltip(RectTransform parentRectTransform, string hotKeyText, ObjectType objectType)
@@ -35,14 +41,7 @@ namespace HotKeysMod
             RectTransform rectTransform = textSupporter.GetComponent<RectTransform>();
             rectTransform.sizeDelta = Vector2.zero;
             rectTransform.localScale = new(1, 1, 1);
-            rectTransform.localPosition = objectType switch
-            {
-                ObjectType.Card => _cardTooltipOffset,
-                ObjectType.Tool => _toolTooltipOffset,
-                ObjectType.Button => _buttonTooltipOffset,
-                ObjectType.GoldenBean => _goldenBeanTooltipOffset,
-                _ => new()
-            };
+            rectTransform.localPosition = _tooltipPositionsDict[objectType];
             return textSupporter;
         }
         public static void CreateCardsTooltips(Transform seedGroupTransform)
@@ -55,12 +54,12 @@ namespace HotKeysMod
                 if (child.parent != seedGroupTransform)
                     continue;
                 cardNumber++;
-                if (cardNumber == HotKeysManager.Cards.Count)
+                if (cardNumber == HotKeysManager.cardsList.Count)
                     return;
                 $"Card number {cardNumber}: '{child.name}' found".Print();
                 if (child.childCount == 0)
                     continue;
-                CreateTooltip(child.GetChild(0).GetComponent<RectTransform>(), (char)HotKeysManager.Cards[cardNumber].keyCode, HotKeyTooltipDrawer.ObjectType.Card);
+                CreateTooltip(child.GetChild(0).GetComponent<RectTransform>(), (char)HotKeysManager.cardsList[cardNumber].keyCode, HotKeyTooltipDrawer.ObjectType.Card);
             }
         }
         public static void DeleteCardsTooltips(Transform seedGroupTransform)

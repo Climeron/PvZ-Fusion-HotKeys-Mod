@@ -24,7 +24,7 @@ namespace HotKeysMod.Patches
         private static void CreateTextsForGoldenBean(Money __instance)
         {
             Transform beanObject = __instance.transform.Find("BeanBank");
-            ShadowedTextSupporter tooltip = CreateTooltip(beanObject.GetComponent<RectTransform>(), (char)HotKeysManager.goldenBean, ObjectType.GoldenBean);
+            ShadowedTextSupporter tooltip = CreateTooltip(beanObject.GetComponent<RectTransform>(), (char)HotKeysManager.toolTypesDict[ToolTypesEnum.GoldenBean], ObjectType.GoldenBean);
             tooltip.Alignment = TextAlignmentOptions.Left;
             tooltip.Size = 70;
             ShadowedTextSupporter beansAmount = ShadowedTextCreator.CreateText("BeansAmount", beanObject);

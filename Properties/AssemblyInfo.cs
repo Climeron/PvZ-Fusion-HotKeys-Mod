@@ -44,7 +44,7 @@ namespace HotKeysMod
     public static class AssemblyInfo
     {
         public const string MODE_NAME = nameof(HotKeysMod);
-        public const string VERSION = "215.0.0";
+        public const string VERSION = "216.0.0";
         public const string AUTHOR = "Climeron";
     }
 }

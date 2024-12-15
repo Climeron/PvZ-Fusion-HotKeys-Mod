@@ -1,4 +1,5 @@
-﻿using Il2Cpp;
+﻿using System.Collections.Generic;
+using Il2Cpp;
 using UnityEngine;
 
 namespace HotKeysMod.Classes
@@ -41,7 +42,7 @@ namespace HotKeysMod.Classes
         }
         public static object GetCard(int index)
         {
-            Transform seedGroup = GetSeedGroup();
+            Transform seedGroup = GetCardsGroup();
             if (!seedGroup || seedGroup.childCount <= index)
                 return null;
             Transform cardContainer = seedGroup.GetChild(index);
@@ -54,7 +55,7 @@ namespace HotKeysMod.Classes
                 return cardUI;
             return null;
         }
-        public static Transform GetSeedGroup() =>
+        public static Transform GetCardsGroup() =>
             GameAPP.canvas.transform.Find("InGameUIFHD/SeedBank/SeedGroup")
                 ?? GameAPP.canvas.transform.Find("InGameUIIZE/SeedBank/SeedGroup");
         public static object PickUpTool(ToolTypesEnum toolType)
@@ -130,6 +131,40 @@ namespace HotKeysMod.Classes
                     return beenBankTransform?.GetComponent<ItemBtn>();
             }
             return null;
+        }
+        public static GardenTool PickUpGardenTool(int index)
+        {
+            GardenUI gardenUI = GardenUI.Instance;
+            if (!gardenUI)
+                return null;
+            GardenTool tool = GetGardenTool(index);
+            if (gardenUI.toolOnMouse)
+            {
+                gardenUI.RightClick();
+                if (!tool)
+                    return null;
+            }
+            tool.PickUp();
+            gardenUI.toolOnMouse = tool;
+            return tool;
+        }
+        public static GardenTool GetGardenTool(int index) => GetGardenTools()[index];
+        public static GardenTool[] GetGardenTools()
+        {
+            List<GardenTool> gardenToolsList = new();
+            foreach (RectTransform bank in GetGardenBanks())
+                gardenToolsList.Add(bank.GetComponentInChildren<GardenTool>());
+            return gardenToolsList.ToArray();
+        }
+        public static RectTransform[] GetGardenBanks()
+        {
+            Transform toolsGroup = GameAPP.canvas.transform.Find("GardenUI/Tools");
+            if (!toolsGroup)
+                return null;
+            List<RectTransform> banksList = new();
+            foreach (Il2CppSystem.Object bank in toolsGroup)
+                banksList.Add(bank.Cast<RectTransform>());
+            return banksList.ToArray();
         }
     }
 }

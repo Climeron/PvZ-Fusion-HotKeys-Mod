@@ -20,8 +20,8 @@ namespace HotKeysMod.TooltipsDrawers
         }
         private static void CreateTooltipForTools()
         {
-            HotKeyTooltipDrawer.CreateTooltip(IZEMgr.Instance.shovel.GetComponent<RectTransform>(), (char)HotKeysManager.shovel, HotKeyTooltipDrawer.ObjectType.Tool);
-            HotKeyTooltipDrawer.CreateTooltip(IZEMgr.Instance.glove.GetComponent<RectTransform>(), (char)HotKeysManager.glove, HotKeyTooltipDrawer.ObjectType.Tool);
+            HotKeyTooltipDrawer.CreateTooltip(IZEMgr.Instance.shovel.GetComponent<RectTransform>(), (char)HotKeysManager.toolTypesDict[ToolTypesEnum.Shovel], HotKeyTooltipDrawer.ObjectType.Tool);
+            HotKeyTooltipDrawer.CreateTooltip(IZEMgr.Instance.glove.GetComponent<RectTransform>(), (char)HotKeysManager.toolTypesDict[ToolTypesEnum.Glove], HotKeyTooltipDrawer.ObjectType.Tool);
         }
         private static void DisableInGameTooltips()
         {
