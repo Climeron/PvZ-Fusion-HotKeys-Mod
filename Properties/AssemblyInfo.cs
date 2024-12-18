@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(HotKeysMod.Classes.Main), HotKeysMod.AssemblyInfo.MODE_NAME, HotKeysMod.AssemblyInfo.VERSION, HotKeysMod.AssemblyInfo.AUTHOR)]
+[assembly: MelonInfo(typeof(HotKeysMod.Classes.Main), HotKeysMod.AssemblyInfo.MODE_NAME, HotKeysMod.AssemblyInfo.VERSION, HotKeysMod.AssemblyInfo.AUTHOR, HotKeysMod.AssemblyInfo.DOWNLOAD_LINK)]
 [assembly: MelonGame("LanPiaoPiao", "PlantsVsZombiesRH")]
 [assembly: MelonAdditionalDependencies("ClimeronToolsForPvZ")]
 
@@ -44,7 +44,8 @@ namespace HotKeysMod
     public static class AssemblyInfo
     {
         public const string MODE_NAME = nameof(HotKeysMod);
-        public const string VERSION = "216.0.0";
+        public const string VERSION = "216.1.0";
         public const string AUTHOR = "Climeron";
+        public const string DOWNLOAD_LINK = "https://github.com/Climeron/PvZ-Fusion-HotKeys-Mod";
     }
 }
